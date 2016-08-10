@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+</head>
+<body>
+	
+	<script type="text/javascript" src="bootgrid.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			$("#table").bootgrid({
+				columnDefs:[
+					{
+						key:"name",
+						headerTitle:"Name",
+						headerCellTemplateFn:function(colmun){
+
+						},
+						headerCellTemplate:'<span></span>',
+
+						cellTemplateFn:function(row){
+
+						}
+					}
+
+					},{
+						key:"age",
+						headerTitle:"Age",
+					},{
+						key:"gender",
+						headerTitle:"Gender",
+					},{
+						key:"score"
+						headerTitle:"Score",
+					}
+				],
+				loading:false,
+				url:"",
+				method:"",
+				dealWithRes:function(promise){
+					return promise.then(function(){
+
+					})
+				}
+			})
+			
+		});
+	</script>
+</body>
+</html>

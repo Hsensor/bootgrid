@@ -1,0 +1,14 @@
+{
+    "name": "storage",
+    "version": "0.0.1",
+    "authors": [
+        "xulu3 <xulu3@lenovo.com>"
+    ],
+    "dependencies": {
+        "jquery":"~3.1.0",
+        "bootstrap":"~3.3.7",
+    },
+    "overrides": {
+    },
+    "description": "bootstrap grid table"
+}
