@@ -5,36 +5,57 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<style type="text/css">
+		table,tr,td{
+			border-collapse: collapse;
+		}
+		table{
+			width: 100%;
+		}
+		tr>td,tr>th{
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
-	
+	<table id="table">
+		<tr>
+			<th>name</th>
+			<th>age</th>
+			<th>gender</th>
+			<th>score</th>
+		</tr>
+	</table>
 	<script type="text/javascript" src="bootgrid.js"></script>
 	<script type="text/javascript">
 		$(function(){
 
-			$("#table").bootgrid({
+			new $.table({
+				dealWithHeaderRow:function($headerRow){
+					console.log($headerRow);
+				},
 				columnDefs:[
 					{
 						key:"name",
 						headerTitle:"Name",
-						headerCellTemplateFn:function(colmun){
-
+						headerCellTemplateFn:function(column){
+							return '<div>'+column.headerTitle+'</div>';
 						},
-						headerCellTemplate:'<span></span>',
-
 						cellTemplateFn:function(row){
 
-						}
-					}
+						},
+						dealWithRowFn:function($row){
 
+						}	
 					},{
 						key:"age",
+						headerCellTemplate:'<span>sadfsdf</span>',
 						headerTitle:"Age",
 					},{
 						key:"gender",
 						headerTitle:"Gender",
 					},{
-						key:"score"
+						key:"score",
 						headerTitle:"Score",
 					}
 				],
@@ -45,7 +66,8 @@
 					return promise.then(function(){
 
 					})
-				}
+				},
+				selector:"table"
 			})
 			
 		});
