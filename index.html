@@ -3,28 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style.css" />
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-	<style type="text/css">
-		table,tr,td{
-			border-collapse: collapse;
-		}
-		table{
-			width: 100%;
-		}
-		tr>td,tr>th{
-			text-align: center;
-		}
-	</style>
+	
 </head>
 <body>
-	<table id="table">
-		<tr>
-			<th>name</th>
-			<th>age</th>
-			<th>gender</th>
-			<th>score</th>
-		</tr>
+	<table id="table" class="sort">
 	</table>
 	<script type="text/javascript" src="bootgrid.js"></script>
 	<script type="text/javascript">
@@ -32,19 +16,21 @@
 
 			new $.table({
 				dealWithHeaderRow:function($headerRow){
-					console.log($headerRow);
+					console.log("headerRow",$headerRow);
+				},
+				dealWithBodyRow:function($bodyRow){
+					console.log("bodyRow",$bodyRow);
 				},
 				columnDefs:[
 					{
 						key:"name",
 						headerTitle:"Name",
 						headerCellTemplateFn:function(column){
-							return '<div>'+column.headerTitle+'</div>';
+							return '<span>'+column.headerTitle+'</span>';
 						},
-						cellTemplateFn:function(row){
+						headerCellTemplate:'<span>sadfsdf</span>',
 
-						},
-						dealWithRowFn:function($row){
+						cellTemplateFn:function(row){
 
 						}	
 					},{
@@ -57,15 +43,57 @@
 					},{
 						key:"score",
 						headerTitle:"Score",
+					},
+					{
+						key:"math",
+						headerTitle:"Math",
+					},
+					{
+						key:"english",
+						headerTitle:"English",
 					}
 				],
+				data:{
+					rows:[{
+						name:"zhangsan",
+						age:18,
+						gender:"male",
+						score:120,
+						math:120,
+						english:120
+					},{
+						name:"zhangsan",
+						age:18,
+						gender:"male",
+						score:120,
+						math:120,
+						english:120
+					},{
+						name:"zhangsan",
+						age:18,
+						gender:"male",
+						score:120,
+						math:120,
+						english:120
+					}],
+					currentPage:null,
+					total:500
+				},
+				dataRowsKey:"rows",
 				loading:false,
-				url:"",
-				method:"",
+				url:"http://localhost:3000/table",
+				method:"post",
+				//loadingTpls:"......",
 				dealWithRes:function(promise){
-					return promise.then(function(){
-
+					return promise.then(function(res){
+						return $.ajax({
+							url:"http://localhost:3000/table",
+							type:"post"
+						});
 					})
+				},
+				getParams:function(tableOpts){
+					console.log(tableOpts);
 				},
 				selector:"table"
 			})
